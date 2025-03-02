@@ -7,3 +7,12 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// Auth::routes();
+
+Route::get('{any}',
+ function(){
+    return view('index');
+})->where('any','.*');
+
