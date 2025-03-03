@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AmenityController;
 use App\Http\Controllers\API\CityController;
 use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\ProjectController;
@@ -49,6 +50,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
          Route::post('/cities', [CityController::class, 'store']);
          Route::delete('/cities/{id}', [CityController::class, 'destroy']);
 
+        //amenities
+        Route::get('/amenities', [AmenityController::class, 'list']);
+        Route::post('/amenities', [AmenityController::class, 'store']);
+        Route::post('/amenities/{id}', [AmenityController::class, 'update']);
+        Route::delete('/amenities/{id}', [AmenityController::class, 'destroy']);
 
     });
 
