@@ -27,12 +27,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         //properties
         Route::get('/properties', [PropertyController::class, 'list']);
+        Route::get('/properties/{id}', [PropertyController::class, 'show']);
         Route::post('/properties', [PropertyController::class, 'store']);
+        Route::put('/properties/{id}', [PropertyController::class, 'update']);
         Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
 
         //projects
         Route::get('/projects', [ProjectController::class, 'list']);
+        Route::get('/projects/{id}', [ProjectController::class, 'show']);
         Route::post('/projects', [ProjectController::class, 'store']);
+        Route::put('/projects/{id}', [ProjectController::class, 'update']);
         Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
 
         //countries

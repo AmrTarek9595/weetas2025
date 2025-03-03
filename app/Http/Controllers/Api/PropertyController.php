@@ -28,6 +28,21 @@ class PropertyController extends Controller
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
     }
 
+    }
+
+    public function show(string $id)
+    {
+        try{
+            $property = Property::find($id);
+
+            if (!$property) {
+                return response()->json(['message' => 'Property not found','status' => 'error'] , 404);
+            }
+
+            return response()->json(['Property'=>$property , 'status' => 'success'], 200);
+        }catch (\Exception $ex){
+            return response()->json(['message'=>$ex->getMessage() ,'status' => 'error'] ,404);
+        }
 
     }
 
@@ -46,6 +61,25 @@ class PropertyController extends Controller
             return response()->json(['message' => 'Property created successfully', 'property' => $result,"status"=>"true"], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage() , 'status' => 'false'], 500);
+        }
+    }
+
+    public function update(PropertyRequest $request, string $id)
+    {
+        try{
+            $property = Property::find($id);
+            if (!$property) {
+                return response()->json(['message' => 'Property not found'], 404);
+            }
+
+            $property->update($request->validated());
+
+            return response()->json([
+                'message'  => 'Property updated successfully',
+                'property' => $property
+            ]);
+        }catch (\Exception $ex){
+            return response()->json(['message'=> 'Error ocuured!!', $ex->getMessage()] , 500);
         }
     }
 
