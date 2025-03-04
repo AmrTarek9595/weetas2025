@@ -21,7 +21,7 @@ class ApiAuthController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
-                'phone' => 'required|string|max:15|unique:users',
+                'phone' => 'nullable|string|max:15|unique:users',
                 'birthdate' => 'nullable|date',
                 // 'role' => 'nullable|integer|in:1,2,3', // 1 for admin 2 for user 3 for provider
                 'gender' => 'nullable|string|in:male,female',
