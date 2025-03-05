@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AmenityController;
 use App\Http\Controllers\API\CityController;
 use App\Http\Controllers\API\CountryController;
+use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\API\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +23,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
        // Admin Routes role 1
        Route::middleware(['role:1'])->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return response()->json(['message' => 'Welcome, Admin!']);
-        });
+        // Route::get('/admin/dashboard', function () {
+        //     return response()->json(['message' => 'Welcome, Admin!']);
+        // });
 
         //properties
         Route::get('/properties', [PropertyController::class, 'list']);
@@ -55,6 +56,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/amenities', [AmenityController::class, 'store']);
         Route::post('/amenities/{id}', [AmenityController::class, 'update']);
         Route::delete('/amenities/{id}', [AmenityController::class, 'destroy']);
+
+        //locations
+        Route::get('/locations', [LocationController::class, 'list']);
+        Route::post('/locations', [LocationController::class, 'store']);
+        Route::put('/locations/{id}', [LocationController::class, 'update']);
+        Route::delete('/locations/{id}', [LocationController::class, 'destroy']);
 
     });
 
