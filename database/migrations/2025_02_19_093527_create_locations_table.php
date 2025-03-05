@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('built_year')->nullable();
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

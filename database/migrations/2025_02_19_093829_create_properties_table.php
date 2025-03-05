@@ -29,11 +29,12 @@ return new class extends Migration
 
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade'); 
-            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade'); 
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
 
-            
+
             $table->string('google_maps')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

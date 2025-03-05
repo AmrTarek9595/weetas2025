@@ -18,6 +18,7 @@ return new class extends Migration
             $table->mediumText('country_arName');
             $table->mediumText('country_enNationality');
             $table->mediumText('country_arNationality');
+            $table->softDeletes();
 
             $table->timestamps();
         });
