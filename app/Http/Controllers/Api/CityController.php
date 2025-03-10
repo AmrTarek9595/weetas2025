@@ -24,7 +24,7 @@ class CityController extends Controller
     public function list()
     {
     try{
-        $city = City::paginate(10);
+        $city = City::get();
         return response()->json(['Projects'=>$city , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
