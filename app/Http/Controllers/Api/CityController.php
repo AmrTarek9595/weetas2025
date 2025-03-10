@@ -25,7 +25,7 @@ class CityController extends Controller
     {
     try{
         $city = City::get();
-        return response()->json(['Projects'=>$city , 'status' =>'success']);
+        return response()->json(['Cities'=>$city , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
     }
