@@ -25,7 +25,7 @@ class CountryController extends Controller
     public function list()
     {
     try{
-        $country = Country::paginate(10);
+        $country = Country::get();
         return response()->json(['Countries'=>$country , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
