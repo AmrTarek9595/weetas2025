@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CountryRequest;
 use App\Http\Requests\PropertyRequest;
+use App\Http\Requests\UpdateCountryRequest;
 use App\Models\Country;
 use App\Services\CountryService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -66,9 +68,27 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCountryRequest $request, string $id)
     {
         //
+        try{
+            $country = Country::find($id);
+
+            if (!$country) {
+                return response()->json(['message' => 'Country not found' , 'status' =>'error'], 404);
+            }
+
+            $country->update($request->validated());
+
+            return response()->json([
+                'message' => 'Country updated successfully',
+                'Country' => $country,
+                'status' =>'success'
+            ]);
+
+        }catch(Exception $ex){
+            return response()->json(['eror Occurd!! ' , $ex->getMessage() , 'status' =>'error'] , 404);
+        }
     }
 
     /**

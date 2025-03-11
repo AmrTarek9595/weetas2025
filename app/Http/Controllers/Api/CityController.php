@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CityRequest;
 use App\Http\Requests\UpdateCityRequest;
+use App\Http\Requests\UpdateCountryRequest;
 use App\Models\City;
 use App\Services\CityService;
 use Exception;
@@ -66,7 +67,7 @@ class CityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCityRequest $request, string $id)
+    public function update(UpdateCountryRequest $request, string $id)
     {
         //
         try{
