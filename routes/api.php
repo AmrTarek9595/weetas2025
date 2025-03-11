@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AmenityController;
 use App\Http\Controllers\API\CityController;
 use App\Http\Controllers\API\CountryController;
+use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\API\ProjectController;
 use Illuminate\Http\Request;
@@ -27,6 +28,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         //     return response()->json(['message' => 'Welcome, Admin!']);
         // });
 
+        //Home Page
+        Route::get('/lastProperties', [HomeController::class, 'lastProperties']);
+        Route::post('/nearbyProperty', [HomeController::class, 'getPropertiesByLocation']);
+
         //properties
         Route::get('/properties', [PropertyController::class, 'list']);
         Route::get('/properties/{id}', [PropertyController::class, 'show']);
@@ -49,6 +54,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
          //cities
          Route::get('/cities', [CityController::class, 'list']);
          Route::post('/cities', [CityController::class, 'store']);
+         Route::put('/cities/{id}', [CityController::class, 'update']);
          Route::delete('/cities/{id}', [CityController::class, 'destroy']);
 
         //amenities

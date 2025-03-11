@@ -30,4 +30,9 @@ class Property extends Model
         'project_id',
         'google_maps',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

@@ -16,4 +16,10 @@ class Location extends Model
         'latitude',
         'longitude',
     ];
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
 }
