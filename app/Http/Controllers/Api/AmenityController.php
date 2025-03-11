@@ -23,7 +23,7 @@ class AmenityController extends Controller
     public function list()
     {
     try{
-        $amenity = SuggestedAmenity::paginate(10);
+        $amenity = SuggestedAmenity::get();
         return response()->json(['Amenity'=>$amenity , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
