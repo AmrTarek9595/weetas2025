@@ -30,6 +30,17 @@ class PropertyController extends Controller
 
     }
 
+    public function allProperties()
+    {
+    try{
+        $property = Property::latest()->get();
+        return response()->json(['Properties'=>$property , 'status' =>'success']);
+    }catch (\Exception $ex){
+        return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
+    }
+
+    }
+
     public function show(string $id)
     {
         try{

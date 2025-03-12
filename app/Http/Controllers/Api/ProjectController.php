@@ -34,6 +34,17 @@ class ProjectController extends Controller
 
     }
 
+    public function allProjects()
+    {
+    try{
+        $project = Project::latest()->get();
+        return response()->json(['Projects'=>$project , 'status' =>'success']);
+    }catch (\Exception $ex){
+        return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
+    }
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
