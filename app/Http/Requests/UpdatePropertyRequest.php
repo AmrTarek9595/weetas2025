@@ -39,7 +39,9 @@ class UpdatePropertyRequest extends FormRequest
                 'user_id'        => 'nullable|exists:users,id',
                 'location_id'    => 'nullable|exists:locations,id',
                 'project_id'     => 'nullable|exists:projects,id',
-                'google_maps'=> 'nullable|string|max:255'
+                'google_maps'    => 'nullable|string|max:255',
+                'published'      => 'nullable|boolean',
+
         ];
 
     }

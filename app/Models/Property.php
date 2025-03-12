@@ -29,6 +29,7 @@ class Property extends Model
         'location_id',
         'project_id',
         'google_maps',
+        'published',
     ];
 
     public function location()

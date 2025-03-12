@@ -34,6 +34,8 @@ return new class extends Migration
 
 
             $table->string('google_maps')->nullable();
+            $table->boolean('published')->default(0)->comment('0 => not published, 1 => published');
+
             $table->softDeletes();
             $table->timestamps();
         });

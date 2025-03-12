@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\Api\PropertyController;
-
+use App\Http\Controllers\Api\UserController;
 
 // Public Routes
 Route::post('/register', [ApiAuthController::class, 'register']);
@@ -21,6 +21,10 @@ Route::post('/forgot-password', [ApiAuthController::class, 'forgotPassword']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [ApiAuthController::class, 'getUserData']);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
+
+    Route::get('/users', [UserController::class, 'userList']);
+    Route::get('/vendors', [UserController::class, 'vendorList']);
+
 
        // Admin Routes role 1
        Route::middleware(['role:1'])->group(function () {

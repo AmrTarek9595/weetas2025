@@ -42,6 +42,7 @@ class PropertyRequest extends FormRequest
             'google_maps' => 'nullable|string',
             'amenities' => 'nullable|array',
             'amenities.*' => 'exists:suggested_amenities,id',
+            'published' => 'required|boolean',
         ];
     }
 }
