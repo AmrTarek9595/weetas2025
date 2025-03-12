@@ -38,7 +38,7 @@ class PropertyRequest extends FormRequest
             'category_ar' => 'nullable|string',
             'user_id' => 'required|exists:users,id',
             'location_id' => 'required|exists:locations,id',
-            'project_id' => 'required|exists:projects,id',
+            'project_id' => 'nullable|exists:projects,id',
             'google_maps' => 'nullable|string',
         ];
     }
