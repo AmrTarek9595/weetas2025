@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class PropertyAmenity extends Model
 {
     //
+    public $timestamps = true;
 }

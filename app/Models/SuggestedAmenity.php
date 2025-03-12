@@ -15,4 +15,9 @@ class SuggestedAmenity extends Model
         'name_ar',
         'icon'
     ];
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class, 'property_amenities')->withTimestamps();
+    }
 }

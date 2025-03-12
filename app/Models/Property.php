@@ -35,4 +35,10 @@ class Property extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function amenities()
+    {
+        return $this->belongsToMany(SuggestedAmenity::class, 'property_amenities', 'property_id', 'amenity_id')->withTimestamps();
+    }
+
 }

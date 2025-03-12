@@ -58,6 +58,7 @@ class PropertyController extends Controller
                 return response()->json(['message' => 'Error creating property', 'error' => $result['error']], 500);
             }
 
+
             return response()->json(['message' => 'Property created successfully', 'property' => $result,"status"=>"true"], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage() , 'status' => 'false'], 500);

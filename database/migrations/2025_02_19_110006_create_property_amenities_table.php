@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_amenities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('amenity_id')->constrained('suggested_amenities')->onDelete('cascade');
             $table->foreignId('property_id')->constrained('properties')->onDelete('cascade');
             $table->timestamps();
         });

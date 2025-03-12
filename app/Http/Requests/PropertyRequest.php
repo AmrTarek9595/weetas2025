@@ -40,6 +40,8 @@ class PropertyRequest extends FormRequest
             'location_id' => 'required|exists:locations,id',
             'project_id' => 'nullable|exists:projects,id',
             'google_maps' => 'nullable|string',
+            'amenities' => 'nullable|array',
+            'amenities.*' => 'exists:suggested_amenities,id',
         ];
     }
 }
