@@ -42,4 +42,9 @@ class Property extends Model
         return $this->belongsToMany(SuggestedAmenity::class, 'property_amenities', 'property_id', 'amenity_id')->withTimestamps();
     }
 
+    public function images()
+{
+    return $this->hasMany(PropertyImage::class);
+}
+
 }

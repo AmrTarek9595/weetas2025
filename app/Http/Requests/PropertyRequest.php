@@ -43,6 +43,9 @@ class PropertyRequest extends FormRequest
             'amenities' => 'nullable|array',
             'amenities.*' => 'exists:suggested_amenities,id',
             'published' => 'required|boolean',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         ];
     }
 }

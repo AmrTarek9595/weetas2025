@@ -41,7 +41,8 @@ class AmenityController extends Controller
 
             // Handle file upload if an icon is provided
             if ($request->hasFile('icon')) {
-                $data['icon'] = $request->file('icon')->store('amenities', 'public');
+                $path = $request->file('icon')->store('amenities', 'public'); // Store in storage/app/public/amenities
+                $data['icon'] = 'storage/' . $path;
             }
 
             $amenity = SuggestedAmenity::create($data);

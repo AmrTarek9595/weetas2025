@@ -43,6 +43,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/properties', [PropertyController::class, 'store']);
         Route::put('/properties/{id}', [PropertyController::class, 'update']);
         Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
+        Route::delete('/property-deleteImages/{image}', [PropertyController::class, 'deleteImage']);
+        Route::post('/properties-addImage/{property}', [PropertyController::class, 'addImages']);
+
+
 
         //projects
         Route::get('/projects', [ProjectController::class, 'list']);

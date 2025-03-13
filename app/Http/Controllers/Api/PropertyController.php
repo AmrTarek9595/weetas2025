@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PropertyRequest;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use App\Services\PropertyService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -44,7 +46,7 @@ class PropertyController extends Controller
     public function show(string $id)
     {
         try{
-            $property = Property::find($id);
+            $property = Property::with(['amenities', 'images'])->find($id);
 
             if (!$property) {
                 return response()->json(['message' => 'Property not found','status' => 'error'] , 404);
@@ -106,6 +108,50 @@ class PropertyController extends Controller
             $property->delete();
 
             return response()->json(['message' => 'Property deleted successfully','status' => 'true'], 200);
+        }
+
+        public function deleteImage($imageId)
+        {
+            try {
+
+                $image = PropertyImage::find($imageId);
+
+                if (!$image) {
+                    return response()->json(['message' => 'Image not found', 'status' => 'error'], 404);
+                }
+
+                // Delete the file from storage
+                Storage::disk('public')->delete($image->image_path);
+
+                // Delete from database
+                $image->delete();
+
+                return response()->json(['message' => 'Image deleted successfully', 'status' => 'success']);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage(), 'status' => 'error'], 500);
+            }
+        }
+
+        public function addImages(Request $request, $propertyId)
+        {
+            try {
+                $property = Property::find($propertyId);
+
+                if (!$property) {
+                    return response()->json(['message' => 'Property not found', 'status' => 'error'], 404);
+                }
+
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $path = $image->store('property_images', 'public');
+                        $property->images()->create(['image_path' => 'storage/' . $path]);
+                    }
+                }
+
+                return response()->json(['message' => 'Images added successfully', 'status' => 'success']);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage(), 'status' => 'error'], 500);
+            }
         }
 }
 
