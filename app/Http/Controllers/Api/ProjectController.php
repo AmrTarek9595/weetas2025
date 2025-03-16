@@ -26,7 +26,7 @@ class ProjectController extends Controller
     public function list()
     {
     try{
-        $project = Project::get();
+        $project = Project::paginate(10);
         return response()->json(['Projects'=>$project , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
