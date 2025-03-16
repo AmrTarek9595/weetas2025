@@ -28,7 +28,7 @@ class LocationController extends Controller
     public function list()
     {
     try{
-        $location = Location::paginate(10);
+        $location = Location::get();
         return response()->json(['Locations'=>$location , 'status' =>'success']);
     }catch (\Exception $ex){
         return response()->json(['Something Wrong! '=>$ex->getMessage() , 'status' => 'error']);
