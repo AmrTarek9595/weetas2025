@@ -23,7 +23,7 @@ class PropertyRequest extends FormRequest
     {
 
         return [
-            'referance_id' => 'required|string|unique:properties,referance_id',
+            'referance_id' => 'nullable|string|unique:properties,referance_id',
             'type' => 'required|string',
             'rentOrSale' => 'required|string',
             'title_en' => 'required|string',

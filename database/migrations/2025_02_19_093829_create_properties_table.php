@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('referance_id')->unique();
+            $table->string('referance_id')->nullable()->unique();
             $table->string('type');
             $table->string('rentOrSale');
             $table->mediumText('title_en');

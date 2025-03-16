@@ -13,6 +13,14 @@ class PropertyService
 
             $property = Property::create($data);
 
+            if($data['published'] == 1){
+                $property->referance_id='RR-'.$property->id;
+                $property->save();
+            }else if($data['published'] == 0){
+                $property->referance_id='TEMP-'.$property->id;
+                $property->save();
+            }
+
             //amenities if user insert
             if (!empty($data['amenities'])) {
                 $property->amenities()->attach($data['amenities'], ['created_at' => now(), 'updated_at' => now()]);
