@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('rentOrSale');
             $table->mediumText('title_en');
             $table->mediumText('title_ar');
-            $table->string('description_en')->nullable();
-            $table->string('description_ar')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ar')->nullable();
             $table->double('price', 15, 2);
             $table->string('area')->nullable();
             $table->integer('bedroom');
