@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AmenityController;
 use App\Http\Controllers\API\CityController;
+use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LocationController;
@@ -39,7 +40,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         //properties
         Route::get('/properties', [PropertyController::class, 'list']);
         Route::get('/allProperties', [PropertyController::class, 'allProperties']);
-        Route::get('/properties/{id}', [PropertyController::class, 'show']);
+        Route::get('/property/{id}', [PropertyController::class, 'show']);
         Route::post('/properties', [PropertyController::class, 'store']);
         Route::put('/properties/{id}', [PropertyController::class, 'update']);
         Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
@@ -79,6 +80,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/locations', [LocationController::class, 'store']);
         Route::put('/locations/{id}', [LocationController::class, 'update']);
         Route::delete('/locations/{id}', [LocationController::class, 'destroy']);
+
+        //ContactUs
+        Route::get('/contact', [ContactUsController::class, 'index']);
+        Route::post('/contact', [ContactUsController::class, 'createContact']);
+
 
     });
 
