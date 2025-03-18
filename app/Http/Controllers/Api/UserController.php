@@ -31,4 +31,14 @@ class UserController extends Controller
     }
 
     }
+
+    public function profile(){
+        try{
+            $user=auth()->user();
+            return response()->json(['User'=>$user , 'status' =>'success']);
+        }catch (\Exception $ex){
+            return response()->json(['error'=>$ex->getMessage() , 'status' => 'error']);
+        }
+
+    }
 }

@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [ApiAuthController::class, 'getUserData']);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
+    Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/users', [UserController::class, 'userList']);
     Route::get('/vendors', [UserController::class, 'vendorList']);
 
@@ -42,7 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/allProperties', [PropertyController::class, 'allProperties']);
         Route::get('/property/{id}', [PropertyController::class, 'show']);
         Route::post('/properties', [PropertyController::class, 'store']);
-        Route::put('/properties/{id}', [PropertyController::class, 'update']);
+        Route::post('/properties/{id}', [PropertyController::class, 'update']);
         Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
         Route::delete('/property-deleteImages/{image}', [PropertyController::class, 'deleteImage']);
         Route::post('/properties-addImage/{property}', [PropertyController::class, 'addImages']);

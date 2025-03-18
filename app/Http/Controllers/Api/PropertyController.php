@@ -72,28 +72,26 @@ class PropertyController extends Controller
             }
 
 
-            return response()->json(['message' => 'Property created successfully', 'property' => $result,"status"=>"true"], 201);
+            return response()->json(['message' => 'Property created successfully', 'property' => $result,"status"=>"success"], 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage() , 'status' => 'false'], 500);
+            return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage() , 'status' => 'error'], 500);
         }
     }
 
     public function update(PropertyRequest $request, string $id)
     {
-        try{
-            $property = Property::find($id);
-            if (!$property) {
-                return response()->json(['message' => 'Property not found'], 404);
+        try {
+            $validatedData = $request->validated();
+
+            $result = $this->propertyService->updateProperty($validatedData, $id);
+
+            if (!$result['status']) {
+                return response()->json(['message' => 'Error updating property', 'error' => $result['error'] ,'status' => 'error'], 500);
             }
 
-            $property->update($request->validated());
-
-            return response()->json([
-                'message'  => 'Property updated successfully',
-                'property' => $property
-            ]);
-        }catch (\Exception $ex){
-            return response()->json(['message'=> 'Error ocuured!!', $ex->getMessage()] , 500);
+            return response()->json(['message' => 'Property updated successfully', 'property' => $result['property'] , 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage() , 'status' => 'error'], 500);
         }
     }
 

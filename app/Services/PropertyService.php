@@ -39,4 +39,25 @@ class PropertyService
             return ['status' => false, 'error' => $e->getMessage()];
         }
     }
+
+    public function updateProperty(array $data, $id)
+    {
+        try {
+            $property = Property::find($id);
+            if (!$property) {
+                return ['status' => false, 'error' => 'Property not found'];
+            }
+
+            $property->update($data);
+
+            // Handle amenities (remove old ones and add new ones)
+            if (isset($data['amenities'])) {
+                $property->amenities()->sync($data['amenities']); // Automatically removes old ones and inserts new ones
+            }
+
+            return ['status' => true, 'property' => $property];
+        } catch (\Exception $e) {
+            return ['status' => false, 'error' => $e->getMessage()];
+        }
+    }
 }
