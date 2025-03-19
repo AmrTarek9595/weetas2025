@@ -23,7 +23,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [ApiAuthController::class, 'getUserData']);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
+    //profile
     Route::get('/profile', [UserController::class, 'profile']);
+    Route::post('/updateProfile', [UserController::class, 'updateProfile']);
+
+
     Route::get('/users', [UserController::class, 'userList']);
     Route::get('/vendors', [UserController::class, 'vendorList']);
 
